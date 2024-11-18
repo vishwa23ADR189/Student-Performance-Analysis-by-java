@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Student {
+    int id;
+    String name;
+    double marks;
+
+    Student(int id, String name, double marks) {
+        this.id = id;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    String getPerformance() {
+        return marks >= 85 ? "Excellent" : marks >= 70 ? "Good" : marks >= 50 ? "Average" : "Needs Improvement";
+    }
+
+    public String toString() {
+        return id + " | " + name + " | " + marks + " | " + getPerformance();
+    }
+}
+
+public class PerformanceTracker {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Student> students = new ArrayList<>();
+        while (true) {
+            System.out.print("\n1. Add  2. View  3. Exit: ");
+            int choice = sc.nextInt();
+            if (choice == 1) {
+                System.out.print("ID Name Marks: ");
+                students.add(new Student(sc.nextInt(), sc.next(), sc.nextDouble()));
+            } else if (choice == 2) {
+                students.forEach(System.out::println);
+            } else break;
+        }
+        sc.close();
+    }
+}
